@@ -1,0 +1,10 @@
+*.local
+*.forget
+
+
+.idea
+
+
+# C Code
+*.o
+*.out
