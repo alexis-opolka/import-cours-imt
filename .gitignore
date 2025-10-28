@@ -5,6 +5,10 @@
 .idea
 
 
-# C Code
+### C Code
 *.o
 *.out
+
+### Rust Code
+**/target
+**/*.rs.bk
