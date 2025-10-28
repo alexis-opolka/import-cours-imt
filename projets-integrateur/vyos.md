@@ -10,8 +10,8 @@
 - Intégrer automatiquement le clavier azerty.
 - Homogénéiser automatiquement les noms des interfaces réseaux des machines virtuelles clonées :
 
-    - Si une seule carte réseau virtuelle est rattachée à la machine virtuelle clonée, l’interface réseau devra se nommer eth0.
-    - Si deux cartes réseaux virtuelles sont rattachées à la machine virtuelle clonée, les interfaces réseaux devront se nommer eth0 et eth1.
+  - Si une seule carte réseau virtuelle est rattachée à la machine virtuelle clonée, l’interface réseau devra se nommer eth0.
+  - Si deux cartes réseaux virtuelles sont rattachées à la machine virtuelle clonée, les interfaces réseaux devront se nommer eth0 et eth1.
 
 ## Quickstart
 
@@ -22,7 +22,6 @@ install image
 ```
 
 and follow the prompts on the console, after that, reboot.
-
 
 ## Commands
 
