@@ -1,0 +1,11 @@
+FROM vyos:1.4.3
+
+LABEL maintainer="Alexis Opolka <contact@alexis-opolka.dev>"
+
+# Install Rust and necessary build tools
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | /bin/sh -s -- -y
+RUN echo "deb [trusted=yes] https://packages.vyos.net/releases/sagitta/1.4.3/20250626 bookworm main contrib non-free\
+    deb-src [trusted=yes] https://packages.vyos.net/releases/sagitta/1.4.3/20250626 bookworm main contrib non-free\
+    deb https://mirrors.kernel.org/debian bookworm main contrib non-free" > /etc/apt/sources.list
+
+

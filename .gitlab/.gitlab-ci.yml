@@ -1,0 +1,13 @@
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+projet_integrateur_ifshow_test:
+  stage: test
+  image:
+    name: import-cours-imt/vyos:1.4.3-rust
+
+  before_script:
