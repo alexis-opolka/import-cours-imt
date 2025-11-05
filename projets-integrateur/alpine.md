@@ -25,9 +25,28 @@ Alpine : le terminal en mode graphique
 
   La commande free permet d’identifier la taille mémoire utilisée par le système
 
+## Quickstart
+
+> [!NOTE] Credentials
+>
+> |          | Value |
+> |----------|-------|
+> | Username |  root |
+> | Password |  N/A  |
+
+For a quickstart, you can run the image then install it permanently like so:
+
+```sh
+setup-alpine
+```
+
+and follow the prompts on the console, after that, reboot.
+
+## Commands
+
 ## Steps
 
-### Windows Manager
+### Window Manager
 
 > [!NOTE] Reference
 > URLs:

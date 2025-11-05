@@ -15,6 +15,13 @@
 
 ## Quickstart
 
+> [!NOTE] Credentials
+>
+> |          | Value |
+> |----------|-------|
+> | Username |  vyos |
+> | Password |  vyos |
+
 For a quickstart, you can run the image then install it permanently like so:
 
 ```sh
@@ -66,6 +73,12 @@ and follow the prompts on the console, after that, reboot.
     else
         echo "$(date '+%Y-%m-%d %H:%M:%S') – CLEAN CONFIG NOT FOUND! Skipping replacement." >> /var/log/vyos-clean-hook.log
     fi
+    ```
+
+- Nettoyer STDOUT
+
+    ```sh
+    clear console
     ```
 
 ## Configuration file
