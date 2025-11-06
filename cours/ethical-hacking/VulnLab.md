@@ -160,6 +160,13 @@ Nmap done: 1 IP address (1 host up) scanned in 15.21 seconds
 
 - **FLAG_And Awwwaaaaayyyy we Go!** :
 
+  > [!NOTE] Missing dependency
+  > The Kali linux was missing the `libmcrypt` dependency first, we need to install it.
+  >
+  > ```sh
+  > sudo apt-get -y install libmcrypt4
+  > ```
+
   ```sh
   ┌──(kali㉿kali)-[~]
   └─$ ./safe
