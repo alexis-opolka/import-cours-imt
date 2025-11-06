@@ -5,10 +5,10 @@ stages:
   - deploy
 
 
-projet_integrateur_ifshow_test:
-  stage: test
-  image:
-    name: registry.gitlab.com/alexis-opolka/import-cours-imt/vyos:1.4.3-rust
+# projet_integrateur_ifshow_test:
+#   stage: test
+#   image:
+#     name: registry.gitlab.com/alexis-opolka/import-cours-imt/vyos:1.4.3-rust
 
-  script:
-    echo "Hello World, this is still a WIP!"
+#   script:
+#     echo "Hello World, this is still a WIP!"
