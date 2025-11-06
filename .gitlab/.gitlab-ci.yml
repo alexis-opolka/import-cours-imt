@@ -8,7 +8,7 @@ stages:
 projet_integrateur_ifshow_test:
   stage: test
   image:
-    name: import-cours-imt/vyos:1.4.3-rust
+    name: registry.gitlab.com/alexis-opolka/import-cours-imt/vyos:1.4.3-rust
 
   script:
     echo "Hello World, this is still a WIP!"
