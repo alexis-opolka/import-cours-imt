@@ -28,10 +28,11 @@ typedef struct Configuration {
     int max_allowed_waiting_connections;
 } Configuration;
 
-char* read_request_line(char request_buffer) {
-    char* lines = strtok(request_buffer, '\n');
+char* read_request_line(char* request_buffer) {
+    const char* line_delimiter = "\n";
+    char* lines = strtok(request_buffer, line_delimiter);
 
-    return lines[0];
+    return lines;
 }
 
 void run_server(Configuration config){
@@ -94,7 +95,7 @@ void run_server(Configuration config){
 
         // We're concatenating the request received with our own information
         char* request_line = read_request_line(request_buffer);
-        strcat(request_buffer, request_line);
+        printf("Request: %s\n", request_line);
 
         send(socket_result, request_buffer, read_buffer+sizeof(request_line), 0);
         close(socket_result);
