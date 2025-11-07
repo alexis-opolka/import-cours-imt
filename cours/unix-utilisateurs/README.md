@@ -72,3 +72,8 @@ echo ${nom?"pas de nom"}
 ```
 
 ## LXC
+
+## Tools
+
+- [ShellCheck](https://shellcheck.net)
+- [NewPipe](https://newpipe.net) (The new ytb vanced?)
