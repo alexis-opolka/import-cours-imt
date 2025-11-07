@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Drawer</title>
+</head>
+
+<body>
+    <label for="colorSelector">color:</label>
+    <select id="colorSelector">
+        <option value="#ff0000">Red</option>
+        <option value="#00ff00">Green</option>
+        <option value="#0000ff">Blue</option>
+    </select>
+
+    <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function fetchPixels() {
+            // Use Fetch API to get pixels
+            fetch('/get_pixels') // Replace with your endpoint
+                .then(response => response.json())
+                .then(pixels => {
+                    for (const pixel of pixels) {
+                        ctx.fillStyle = pixel.color;
+                        ctx.fillRect(pixel.x, pixel.y, 5, 5);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching pixels:', error);
+                });
+        }
+
+        setInterval(fetchPixels, 1000/24);
+
+        let isMouseDown = false;
+        let selectedColor = "#ff0000";
+
+        colorSelector.addEventListener('change', function() {
+            selectedColor = colorSelector.value;
+            console.log("Selected Color changed to:", selectedColor);
+        });
+        canvas.addEventListener('mousedown', (event) => {
+            isMouseDown = true;
+            sendPixelChange(event);
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            if (isMouseDown) {
+                sendPixelChange(event);
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+        canvas.addEventListener('click', sendPixelChange);
+
+        function sendPixelChange(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            notifyServerPixelChange(x, y);
+        }
+
+        function notifyServerPixelChange(x, y) {
+            console.log(selectedColor);
+            let url = '/add_pixel/?x='+x+"&y="+y+"&color="+encodeURIComponent(selectedColor)+"";
+            console.log(url);
+            fetch(url, { 
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Pixel change acknowledged:', data);
+            })
+            .catch(error => {
+                console.error('Error notifying server:', error);
+            });
+        }
+
+    </script>
+</body>
+
+</html>
