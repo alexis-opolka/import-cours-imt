@@ -1,0 +1,6 @@
+[
+    {
+        "key": "alt+k alt+f",
+        "command": "workbench.action.minimizeOtherEditorsHideSidebar"
+    }
+]
