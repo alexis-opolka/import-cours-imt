@@ -9,8 +9,8 @@ typedef enum IPVersion {
     IPv6 = 6
 } IPVersion;
 typedef enum Protocol {
-    UDP = 0,
-    TCP = 1
+    UDP = 1,
+    TCP = 2
 } Protocol;
 typedef struct sockaddr_in sockaddr_in;
 
@@ -69,9 +69,23 @@ void run_server(Configuration config){
 
     int socket_result;
     while (socket_result != -1) {
+        size_t buffer_size = 1024;
+        char buffer[buffer_size];
+
         socket_result = accept(socket_nbr, (struct sockaddr *)&config.address_in, (socklen_t *)&addrlen);
-    
+
         printf("Connection réussie avec un client sur la socket %d\n", socket_result);
+
+        ssize_t read_buffer = read(socket_result, &buffer, buffer_size);
+        if (read_buffer >= 0) {
+            printf("Buffer size: %d\n", read_buffer);
+
+            buffer[read_buffer] = '\0';
+        }
+
+        printf("The first %d bits of the request:\n\n---------\n\n%s\n\n---------\n\n", buffer_size, buffer);
+
+        send(socket_result, buffer, read_buffer, 0);
         close(socket_result);
     }
 
@@ -81,9 +95,12 @@ void run_server(Configuration config){
 int main(int argc, char const *argv[])
 {
     char mode;
+    Configuration config;
+
     printf("Please choose an operation mode:"
         "\n\t- a for the built-in operation mode"
         "\n\t- m to use a manual operation mode"
+        "\n\t- b to use the built-in configured"
         "\n\t- q to quit the shell\n"
     );
 
@@ -92,7 +109,6 @@ int main(int argc, char const *argv[])
     switch (mode)
     {
         case 'm':
-            Configuration config;
 
             printf("Please specify the IP version you wish to use (4/6):");
             scanf(" %d", &config.ip_version);
@@ -101,14 +117,22 @@ int main(int argc, char const *argv[])
             scanf(" %d", &config.port_in);
 
             printf("Please specify the protocol to use:"
-                "\n\t- [0] for TCP"
-                "\n\t- [1] for UDP\n"
+                "\n\t- [1] for TCP"
+                "\n\t- [2] for UDP\n"
             );
             scanf(" %d", &config.preferred_protocol);
 
             run_server(config);
 
-            /* code */
+            break;
+
+        case 'b':
+            config.ip_version = IPv4;
+            config.port_in = 7070;
+            config.preferred_protocol = TCP;
+
+            run_server(config);
+
             break;
 
         case 'a':
