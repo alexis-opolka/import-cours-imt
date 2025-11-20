@@ -26,4 +26,4 @@ If the copyright or license is not respected, please either open an [issue](http
 
 ## Contact
 
-You can always contact me at the following address: [contact@alexis-opolka.dev](contact@alexis-opolka.dev)
+You can always contact me at the following address: [contact@alexis-opolka.dev](mailto:contact@alexis-opolka.dev)
